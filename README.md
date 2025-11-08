@@ -45,32 +45,34 @@
 - **Nginx** - обратный прокси (опционально)
 
 ## 📁 Архитектура проекта
+```
 taskflow/
-├── app/ # Основное приложение
-│ ├── init.py # Инициализация Flask app
-│ ├── models.py # Модели данных (Task, Category)
-│ ├── routes.py # Маршруты и API эндпоинты
-│ ├── templates/ # HTML шаблоны
-│ │ ├── base.html # Базовый шаблон
-│ │ ├── index.html # Главная страница
-│ │ ├── tasks.html # Страница задач
-│ │ └── add_task.html # Форма добавления задачи
-│ └── static/
-│ └── css/
-│ └── style.css # Стили приложения
-├── tests/ # Тесты
-│ ├── init.py
-│ ├── test_basic.py # Базовые тесты
-│ └── test_routes.py # Тесты API
-├── docker/ # Docker конфигурации
-├── Dockerfile # Конфигурация Docker образа
-├── docker-compose.yml # Production окружение
-├── docker-compose.test.yml # Тестовое окружение
-├── .gitlab-ci.yml # CI/CD пайплайн
-├── requirements.txt # Зависимости Python
-├── run.py # Точка входа приложения
-├── init_db.py # Инициализация БД
-└── .env # Переменные окружения
+├── app/                          # Основное приложение
+│   ├── __init__.py              # Инициализация Flask app
+│   ├── models.py                # Модели данных (Task, Category)
+│   ├── routes.py                # Маршруты и API эндпоинты
+│   ├── templates/               # HTML шаблоны
+│   │   ├── base.html           # Базовый шаблон
+│   │   ├── index.html          # Главная страница
+│   │   ├── tasks.html          # Страница задач
+│   │   └── add_task.html       # Форма добавления задачи
+│   └── static/
+│       └── css/
+│           └── style.css       # Стили приложения
+├── tests/                       # Тесты
+│   ├── __init__.py
+│   ├── test_basic.py           # Базовые тесты
+│   └── test_routes.py          # Тесты API
+├── docker/                      # Docker конфигурации
+├── Dockerfile                   # Конфигурация Docker образа
+├── docker-compose.yml          # Production окружение
+├── docker-compose.test.yml     # Тестовое окружение
+├── .gitlab-ci.yml              # CI/CD пайплайн
+├── requirements.txt            # Зависимости Python
+├── run.py                      # Точка входа приложения
+├── init_db.py                  # Инициализация БД
+└── .env                        # Переменные окружения
+```
 ## 🔧 Быстрый старт
 
 ### Локальная разработка
