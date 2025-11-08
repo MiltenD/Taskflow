@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Home - TaskFlow{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto text-center">
+        <h1 class="display-4 mb-4">Welcome to TaskFlow</h1>
+        <p class="lead">Your personal task management system with automated deployment pipeline</p>
+        
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Manage Tasks</h5>
+                        <p class="card-text">Create, edit, and organize your tasks efficiently</p>
+                        <a href="{{ url_for('main.tasks') }}" class="btn btn-primary">View Tasks</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add New</h5>
+                        <p class="card-text">Create new tasks with categories and priorities</p>
+                        <a href="{{ url_for('main.add_task') }}" class="btn btn-success">Add Task</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">API Health</h5>
+                        <p class="card-text">Check system status and database connection</p>
+                        <a href="{{ url_for('main.health_check') }}" class="btn btn-info">Health Check</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <h3>System Information</h3>
+            <div class="alert alert-secondary">
+                <strong>Technology Stack:</strong> Flask, Docker, GitLab CI/CD, PostgreSQL
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

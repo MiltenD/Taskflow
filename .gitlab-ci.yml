@@ -1,0 +1,62 @@
+stages:
+  - test
+  - build
+  - deploy
+
+variables:
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+
+# Кэширование для ускорения сборок
+cache:
+  paths:
+    - .cache/pip
+
+before_script:
+  - docker info
+  - docker-compose --version
+
+# Тестирование приложения
+test:
+  stage: test
+  script:
+    - docker-compose -f docker-compose.test.yml up --build --abort-on-container-exit
+    - docker-compose -f docker-compose.test.yml down
+  only:
+    - merge_requests
+    - main
+  tags:
+    - docker
+
+# Сборка Docker образа
+build:
+  stage: build
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
+    - docker build -t $CI_REGISTRY_IMAGE:latest .
+    - echo "Docker image built successfully"
+  only:
+    - main
+  tags:
+    - docker
+
+# Деплой в продакшен (демо)
+deploy_production:
+  stage: deploy
+  script:
+    - echo "Deploying to production environment"
+    - echo "Application: TaskFlow"
+    - echo "Version: $CI_COMMIT_SHA"
+    - echo "Deployment would include:"
+    - echo "1. Pushing Docker image to registry"
+    - echo "2. Deploying to cloud platform"
+    - echo "3. Running database migrations"
+    - echo "4. Health checks and monitoring"
+  environment:
+    name: production
+    url: http://your-production-domain.com
+  only:
+    - main
+  when: manual
+  tags:
+    - docker

@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - FLASK_ENV=testing
+      - DATABASE_URL=sqlite:///test.db
+      - SECRET_KEY=test-secret-key-for-ci
+    command: >
+      sh -c "pip install pytest && python init_db.py && pytest -v"
+    volumes:
+      - .:/app
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=test_taskflow
+      - POSTGRES_USER=test_user
+      - POSTGRES_PASSWORD=test_password
